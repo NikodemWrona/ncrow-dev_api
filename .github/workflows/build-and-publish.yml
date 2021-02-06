@@ -15,7 +15,7 @@ jobs:
           docker login docker.pkg.github.com -u nikodemwrona -p ${{ secrets.GITHUB_TOKEN }}
       - name: Build Image
         run: |
-          docker build -t docker.pkg.github.co/nikodemwrona/ncrow-dev_api/ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
+          docker build -t docker.pkg.github.com/nikodemwrona/ncrow-dev_api/ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
       - name: Push to GitHub Packages
         run: |
           docker push docker.pkg.github.com/nikodemwrona/ncrow-dev_api/ncrow-dev_api:latest
