@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"github.com/gorilla/mux"
-	HealthCheck "github.com/nikodemwrona/ncrow-dev_api/controllers/healthCheck"
+	HealthCheck "github.com/nikodemwrona/ncrow-dev_api/src/controllers/healthCheck"
 	"net/http"
 )
 

@@ -1,0 +1,23 @@
+name: Build and Publish Docker Image
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build_and_push_image:
+    name: Build and Publish Docker Image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      - name: Build Image
+        run: |
+          docker build -t ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
+      - name: Push to GitHub Packages
+        uses: docker/build-push-action@v1
+        with:
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+          registry: docker.pkg.github.com
+          repository: nikodemwrona/ncrow-dev_api/ncrow-dev_api:latest
+          tag_with_ref: true

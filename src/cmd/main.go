@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/gorilla/mux"
-	"github.com/nikodemwrona/ncrow-dev_api/controllers"
-	"github.com/nikodemwrona/ncrow-dev_api/internal/server"
+	"github.com/nikodemwrona/ncrow-dev_api/src/controllers"
+	"github.com/nikodemwrona/ncrow-dev_api/src/internal/server"
 )
 
 func main() {
