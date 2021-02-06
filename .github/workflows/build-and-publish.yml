@@ -12,12 +12,12 @@ jobs:
         uses: actions/checkout@v2
       - name: Build Image
         run: |
-          docker build -t ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
+          docker build -t ncrow-dev_api --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
       - name: Push to GitHub Packages
-        uses: docker/build-push-action@v1
+        uses: docker/build-push-action@v2
         with:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: nikodemwrona/ncrow-dev_api/ncrow-dev_api:latest
+          repository: nikodemwrona/ncrow-dev_api/ncrow-dev_api
           tag_with_ref: true
