@@ -17,7 +17,7 @@ jobs:
           password: ${{ secrets.DOCKER_HUB_TOKEN }}
       - name: Build Image
         run: |
-          docker build -t ncrow-dev/ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
+          docker build -t ${{ secrets.DOCKER_HUB_USER }}/ncrow-dev_api:latest --build-arg GITHUB_TOKEN=${{ secrets.GITHUB_TOKEN }} .
       - name: Push to GitHub Packages
         run: |
           docker push ${{ secrets.DOCKER_HUB_USER }}/ncrow-dev-api:latest
