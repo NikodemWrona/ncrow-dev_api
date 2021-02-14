@@ -3,6 +3,7 @@ package sendContactMessage
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/nikodemwrona/ncrow-dev_api/src/models"
 	"net/http"
 )
 
@@ -39,6 +40,15 @@ func Controller(w http.ResponseWriter, request *http.Request) {
 
 	if err != nil {
 		fmt.Println("Error : ", err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
+	message := models.Message{Message: body.Message, Name: body.Name}
+	ok, err := models.SaveMessage(message)
+
+	if ok != true || err != nil {
+		fmt.Println("Error : ", err, "Ok : ", ok)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
