@@ -2,7 +2,6 @@ package models
 
 import (
 	"context"
-	"fmt"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
@@ -14,8 +13,10 @@ type Message struct {
 }
 
 func SaveMessage(message Message) (bool, error) {
-	fmt.Println("SAVE MESSAGE")
-	collection := DatabaseClient.Database("ncrow_dev").Collection("messages")
+	databaseName := "ncrow_dev"
+	collectionName := "messages"
+
+	collection := DatabaseClient.Database(databaseName).Collection(collectionName)
 	_, err := collection.InsertOne(context.Background(), message)
 
 	if err != nil {
