@@ -1,4 +1,4 @@
-package healthCheck
+package sendContactMessage
 
 import (
 	"encoding/json"
@@ -10,7 +10,12 @@ type Payload struct {
 	Ok bool `json:"ok"`
 }
 
-const PATH = "/healthcheck"
+type Body struct {
+	Message string
+	Name    string
+}
+
+const PATH = "/contact/message"
 
 const ORIGIN = "http://localhost:3000"
 const METHODS = "POST, OPTIONS"
@@ -23,20 +28,20 @@ func Controller(w http.ResponseWriter, request *http.Request) {
 	w.Header().Set("Access-Control-Allow-Methods", METHODS)
 	w.Header().Set("Access-Control-Allow-Headers", HEADERS)
 
-	w.Header().Set("Content-Type", "application/json")
-
 	if request.Method == http.MethodOptions {
 		w.WriteHeader(http.StatusOK)
 		return
 	}
 
-	payload := Payload{Ok: true}
-	response, err := json.Marshal(payload)
+	var body Body
+	decoder := json.NewDecoder(request.Body)
+	err := decoder.Decode(&body)
 
 	if err != nil {
+		fmt.Println("Error : ", err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 
-	w.Write(response)
+	w.WriteHeader(http.StatusOK)
 }
