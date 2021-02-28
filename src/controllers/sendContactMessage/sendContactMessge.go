@@ -3,6 +3,7 @@ package sendContactMessage
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/nikodemwrona/ncrow-dev_api/src/internal/sanitizer"
 	"github.com/nikodemwrona/ncrow-dev_api/src/models"
 	"net/http"
 )
@@ -44,7 +45,11 @@ func Controller(w http.ResponseWriter, request *http.Request) {
 		return
 	}
 
-	message := models.Message{Message: body.Message, Name: body.Name}
+	message := models.Message{
+		Message: sanitizer.Sanitize(body.Message),
+		Name:    sanitizer.Sanitize(body.Name),
+	}
+
 	ok, err := models.SaveMessage(message)
 
 	if ok != true || err != nil {
