@@ -2,6 +2,7 @@ package mongodb
 
 import (
 	"context"
+	"fmt"
 	"github.com/nikodemwrona/ncrow-dev_api/src/models"
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
@@ -16,6 +17,8 @@ func ConnectToMongoDb() {
 	port := os.Getenv("MONGODB_PORT")
 
 	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@localhost:" + port
+
+	fmt.Println("STRING : ", mongoDbConnectionString)
 
 	var err error
 	models.DatabaseClient, err = mongo.NewClient(options.Client().ApplyURI(mongoDbConnectionString))
