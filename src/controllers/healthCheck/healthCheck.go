@@ -12,7 +12,7 @@ type Payload struct {
 
 const PATH = "/healthcheck"
 
-const ORIGIN = "http://localhost:3000"
+const ORIGIN = "*"
 const METHODS = "POST, OPTIONS"
 const HEADERS = "Accept, Content-Type, Content-Length, Authorization"
 
