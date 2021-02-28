@@ -6,12 +6,16 @@ import (
 	"go.mongodb.org/mongo-driver/mongo"
 	"go.mongodb.org/mongo-driver/mongo/options"
 	"log"
+	"os"
 	"time"
 )
 
-const mongoDbConnectionString = "mongodb://root:password@localhost:27017"
-
 func ConnectToMongoDb() {
+	user := os.Getenv("MONGODB_USER")
+	password := os.Getenv("MONGODB_PASSWORD")
+
+	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@localhost:27017"
+
 	var err error
 	models.DatabaseClient, err = mongo.NewClient(options.Client().ApplyURI(mongoDbConnectionString))
 
