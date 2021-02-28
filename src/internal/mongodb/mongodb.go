@@ -13,8 +13,9 @@ import (
 func ConnectToMongoDb() {
 	user := os.Getenv("MONGODB_USER")
 	password := os.Getenv("MONGODB_PASSWORD")
+	port := os.Getenv("MONGODB_PORT")
 
-	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@localhost:27017"
+	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@localhost:" + port
 
 	var err error
 	models.DatabaseClient, err = mongo.NewClient(options.Client().ApplyURI(mongoDbConnectionString))
