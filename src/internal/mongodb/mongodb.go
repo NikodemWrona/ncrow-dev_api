@@ -14,9 +14,9 @@ import (
 func ConnectToMongoDb() {
 	user := os.Getenv("MONGODB_USER")
 	password := os.Getenv("MONGODB_PASSWORD")
-	port := os.Getenv("MONGODB_PORT")
+	host := os.Getenv("MONGODB_HOST")
 
-	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@localhost:" + port
+	mongoDbConnectionString := "mongodb://" + user + ":" + password + "@" + host
 
 	fmt.Println("STRING : ", mongoDbConnectionString)
 
